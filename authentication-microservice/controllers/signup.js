@@ -1,1 +1,4 @@
-module.exports = (req, res) => res.statusCode(501);
+module.exports = (req, res) => {
+    console.log(req.body);
+    res.statusCode(200);
+}

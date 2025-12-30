@@ -1,1 +1,4 @@
-module.exports = (req, res) => res.sendStatus(501);
+module.exports = (req, res) => {
+    console.log(req.body);    
+    res.sendStatus(200);
+}
