@@ -10,7 +10,7 @@ const Repositories = require("./repositories");
         const env = Env();
         const db = await Database(env);
         const models = await Models(db, env);
-        const repos = await Repositories(models)
+        const repos = Repositories(models)
         const server = Server(env, repos);
 
         server.listen(env.server.port, () => {
