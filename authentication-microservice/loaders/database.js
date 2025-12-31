@@ -11,7 +11,7 @@ module.exports = async (env) => {
         logging,
     } = env.database;
 
-    const db = Sequelize(name, user, password, {
+    const db = new Sequelize(name, user, password, {
         host,
         port,
         dialect,

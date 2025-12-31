@@ -5,7 +5,7 @@ const loginController = require("../controllers/login")
 const signUpController = require("../controllers/signup")
 const schemaValidatorMiddleware = require("../middlewares/schema-validator"); // middleware that validatos the datas inside the req.body
 
-module.exports = (env) => {
+module.exports = (env, repos) => {
     const app = express();
 
     app.post("/foo", express.json(), (req, res) => { // now this middleware only parses json format body so if other type of headers were specified it will pass an empty json
@@ -18,9 +18,9 @@ module.exports = (env) => {
 
     app.get("/health", healtheController);
 
-    app.post("/auth/login", schemaValidatorMiddleware('login'),  loginController(env))
+    app.post("/auth/login", schemaValidatorMiddleware('login'),  loginController(env, repos));
 
-    app.post("/auth/signup", schemaValidatorMiddleware('signup'), signUpController)
+    app.post("/auth/signup", schemaValidatorMiddleware('signup'), signUpController(repos));
 
     app.use(fallbackController)
 
