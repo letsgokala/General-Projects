@@ -16,6 +16,9 @@ module.exports = () => {
     return {
         server: {
             port: parseInt(env.parsed.SERVER_PORT, 10) || 3000
+        },
+        jwt: {
+            secret: env.parsed.JWT_SECRET
         }
     };
 
