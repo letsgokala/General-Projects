@@ -4,6 +4,7 @@ const fallbackController = require("../controllers/fallback")
 const loginController = require("../controllers/login")
 const signUpController = require("../controllers/signup")
 const schemaValidatorMiddleware = require("../middlewares/schema-validator"); // middleware that validatos the datas inside the req.body
+const errorMiddleware = require("../middlewares/error-handler");
 
 module.exports = (env, repos) => {
     const app = express();
@@ -23,6 +24,8 @@ module.exports = (env, repos) => {
     app.post("/auth/signup", schemaValidatorMiddleware('signup'), signUpController(repos));
 
     app.use(fallbackController)
+
+    app.use(errorMiddleware);
 
     return app;
 }
